@@ -7,11 +7,18 @@
     <!-- メタタグ・OGP設定 -->
     <title>推し愛爆発♡カードメーカー | ジェミ特製</title>
     <meta name="description" content="推しの尊さを1枚のカードに凝縮！写真、名言、布教ポイントをまとめてシェアしよう♡">
+    
+    <!-- ここをGitHub PagesのURLに合わせておいたよ！ -->
     <meta property="og:title" content="推し愛爆発♡カードメーカー">
     <meta property="og:description" content="あなたの推しを布教しよう！画像と名言で作るオリジナルカードメーカー。">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mofu-mitsu.github.io/oshiai-card-maker/">
     
-    <!-- ファビコン -->
+    <!-- ↓ もしオリジナルの画像を作ったら、その画像のURL（https://.../ogp.png）に書き換えてね！今はダミー画像だよ -->
+    <meta property="og:image" content="https://placehold.co/1200x630/ffb7c5/white?text=OSHI+CARD+MAKER">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- ファビコン（これはこのままでOK！） -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
     <!-- ライブラリ読み込み -->
@@ -23,7 +30,12 @@
 
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
-            background-color: #fdfcf8;
+            background-color: #fdfcf8; /* 背景色 */
+            /* 背景にドット柄を追加して可愛くしてみた */
+            background-image: radial-gradient(#ffeef2 20%, transparent 20%), radial-gradient(#ffeef2 20%, transparent 20%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            
             color: #5a5a5a;
             display: flex;
             flex-direction: column;
@@ -33,20 +45,40 @@
             overflow-x: hidden;
         }
 
+        /* --- タイトルの装飾（ここをガッツリ可愛くしたよ！） --- */
         h1 {
             color: #ff8ba7;
             font-family: 'Kiwi Maru', serif;
             font-weight: 500;
             text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
+            font-size: 1.6rem;
+            
+            /* 枠と背景を追加 */
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 50px; /* 丸っこく */
+            border: 3px dashed #ffb7c5; /* ステッチ風の枠線 */
+            box-shadow: 0 4px 0 rgba(255, 183, 197, 0.4); /* 立体感のある影 */
+            
+            margin-bottom: 10px;
+            display: inline-block; /* 文字の長さに合わせる */
+            max-width: 90%;
+            line-height: 1.4;
+        }
+
+        h1 i {
+            margin-right: 5px;
+            color: #ff9a9e;
         }
 
         .subtitle {
             text-align: center;
-            color: #999;
-            font-size: 0.9rem;
+            color: #888;
+            font-size: 0.85rem;
             margin-bottom: 30px;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 15px;
+            border-radius: 20px;
         }
 
         .container {
@@ -67,7 +99,7 @@
             padding: 25px;
             border-radius: 25px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-            border: 1px solid #f0f0f0;
+            border: 1px solid #fff0f5;
         }
 
         .input-group {
@@ -75,14 +107,20 @@
         }
 
         label {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             margin-bottom: 8px;
             font-weight: bold;
             font-size: 0.95rem;
             color: #777;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        }
+        
+        /* アイコンの色を統一 */
+        label i {
+            color: #ffb7c5; 
+            width: 20px;
+            text-align: center;
         }
 
         input[type="text"], textarea {
@@ -99,6 +137,7 @@
         input[type="text"]:focus, textarea:focus {
             border-color: #ffb7c5;
             outline: none;
+            background-color: #fffbfc;
         }
 
         textarea {
@@ -107,12 +146,10 @@
         }
 
         /* --- ファイル選択ボタンのカスタマイズ --- */
-        /* 本来のinputタグは隠す */
         input[type="file"] {
             display: none;
         }
 
-        /* カスタムラベルをボタン風にする */
         .file-upload-label {
             display: flex;
             align-items: center;
@@ -133,6 +170,7 @@
         .file-upload-label:hover {
             background: #ffe6ee;
             border-color: #ff8ba7;
+            transform: translateY(-2px);
         }
 
         .file-name-display {
@@ -151,9 +189,9 @@
         }
         
         input[type="color"] {
-            display: block; /* display:noneは解除 */
-            appearance: none; /* 標準 */
-            -webkit-appearance: none; /* Safari/Chrome用 */
+            display: block;
+            appearance: none;
+            -webkit-appearance: none;
             border: none;
             width: 50px;
             height: 50px;
@@ -163,6 +201,11 @@
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             background: none;
+            transition: transform 0.2s;
+        }
+        
+        input[type="color"]:hover {
+            transform: scale(1.1);
         }
         
         input[type="color"]::-webkit-color-swatch-wrapper {
@@ -350,16 +393,26 @@
             color: white;
             box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
         }
+        
+        #btn-save:hover {
+             transform: translateY(-2px);
+             box-shadow: 0 6px 20px rgba(255, 154, 158, 0.6);
+        }
 
         #btn-share {
             background: #444;
             color: white;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
+        
+        #btn-share:hover {
+            transform: translateY(-2px);
+            background: #222;
+        }
 
         /* スマホ向け調整 */
         @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; }
+            h1 { font-size: 1.4rem; padding: 12px 20px; }
             .container { gap: 20px; }
             .editor { padding: 20px; border-radius: 20px;}
             #oshi-card { width: 100%; max-width: 320px; }
@@ -371,14 +424,14 @@
 </head>
 <body>
 
-    <h1><i class="fa-solid fa-heart" style="color:#ffb7c5;"></i> 推し愛爆発♡カード</h1>
+    <h1><i class="fa-solid fa-heart"></i> 推し愛爆発♡カード</h1>
     <p class="subtitle">画像と名言を入力して、最強の布教カードを作ろう！</p>
 
     <div class="container">
         <!-- 入力エリア -->
         <div class="editor">
             <div class="input-group">
-                <label><i class="fa-solid fa-palette"></i> テーマカラー（グラデーション）</label>
+                <label><i class="fa-solid fa-palette"></i> テーマカラー</label>
                 <div class="color-picker-wrapper">
                     <input type="color" id="bg-color-1" value="#ffdde1" title="開始色">
                     <i class="fa-solid fa-arrow-right" style="color:#ddd;"></i>
@@ -388,7 +441,6 @@
 
             <div class="input-group">
                 <label><i class="fa-regular fa-image"></i> 推しの尊い画像</label>
-                <!-- ここを変更！隠しinputとカスタムラベル -->
                 <input type="file" id="image-upload" accept="image/*">
                 <label for="image-upload" class="file-upload-label">
                     <i class="fa-solid fa-cloud-arrow-up"></i> 画像ファイルを選択
