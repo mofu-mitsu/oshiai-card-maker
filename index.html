@@ -498,8 +498,53 @@
             </div>
         </div>
     </div>
+    <!-- スマホ用長押し保存エリア -->
+    <div id="longpressSaveArea"></div>
 
+    <!-- 楽天アフィ -->
+    <div class="rakuten">
+        <a href="https://hb.afl.rakuten.co.jp/hsc/4e9240a2.33577567.3d95c766.8a7897b5/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiI4NSIsImJhbiI6NDc4OTczLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener">
+            <img src="https://hbb.afl.rakuten.co.jp/hsb/4e9240a2.33577567.3d95c766.8a7897b5/?me_id=1&me_adv_id=478973&t=pict" border="0" alt="楽天お買い物マラソン">
+        </a>
+    </div>
+
+    <!-- TOPへ戻る -->
+    <div class="backtop">
+        <a href="https://mofu-mitsu.github.io/" style="color:#ff8ba7;text-decoration:none;font-weight:bold;">
+            <i class="fa-solid fa-house"></i> もふみつ工房 TOPへ戻る
+        </a>
+    </div>
     <script>
+        // ここ重要！スマホでも確実に保存できるようにした部分
+        document.getElementById('btn-save').addEventListener('click', function() {
+            const btn = this;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 生成中...';
+            btn.disabled = true;
+
+            html2canvas(document.getElementById('oshi-card'), {scale: 3, useCORS: true, backgroundColor: null}).then(canvas => {
+                if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                    // PCは普通にダウンロード
+                    const link = document.createElement('a');
+                    link.download = `oshi-card-${Date.now()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                } else {
+                    // スマホは画像を表示して長押し保存誘導
+                    const area = document.getElementById('longpressSaveArea');
+                    area.style.display = 'block';
+                    area.innerHTML = '<p style="color:#d65d7a;font-weight:bold;">画像を長押しして「写真に保存」してね♡</p>';
+                    const img = new Image();
+                    img.src = canvas.toDataURL('image/png');
+                    img.style.maxWidth = '100%';
+                    img.style.borderRadius = '12px';
+                    img.style.boxShadow = '0 10px 30px rgba(255,105,180,0.3)';
+                    area.appendChild(img);
+                    area.scrollIntoView({behavior: 'smooth'});
+                }
+                btn.innerHTML = '<i class="fa-solid fa-camera"></i> 画像として保存（スマホでもOK）';
+                btn.disabled = false;
+            });
+        });
         // 要素の取得
         const card = document.getElementById('oshi-card');
         const inputs = {
