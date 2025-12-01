@@ -8,17 +8,17 @@
     <title>推し愛爆発♡カードメーカー | ジェミ特製</title>
     <meta name="description" content="推しの尊さを1枚のカードに凝縮！写真、名言、布教ポイントをまとめてシェアしよう♡">
     
-    <!-- ここをGitHub PagesのURLに合わせておいたよ！ -->
+    <!-- GitHub PagesのURL -->
     <meta property="og:title" content="推し愛爆発♡カードメーカー">
     <meta property="og:description" content="あなたの推しを布教しよう！画像と名言で作るオリジナルカードメーカー。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mofu-mitsu.github.io/oshiai-card-maker/">
     
-    <!-- ↓ もしオリジナルの画像を作ったら、その画像のURL（https://.../ogp.png）に書き換えてね！今はダミー画像だよ -->
+    <!-- OGP画像（ファイル名が ogp.png であることを確認してね！） -->
     <meta property="og:image" content="https://mofu-mitsu.github.io/oshiai-card-maker/ogp.png">
     <meta name="twitter:card" content="summary_large_image">
     
-    <!-- ファビコン（これはこのままでOK！） -->
+    <!-- ファビコン -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
     <!-- ライブラリ読み込み -->
@@ -30,12 +30,10 @@
 
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
-            background-color: #fdfcf8; /* 背景色 */
-            /* 背景にドット柄を追加して可愛くしてみた */
+            background-color: #fdfcf8;
             background-image: radial-gradient(#ffeef2 20%, transparent 20%), radial-gradient(#ffeef2 20%, transparent 20%);
             background-size: 20px 20px;
             background-position: 0 0, 10px 10px;
-            
             color: #5a5a5a;
             display: flex;
             flex-direction: column;
@@ -45,23 +43,19 @@
             overflow-x: hidden;
         }
 
-        /* --- タイトルの装飾（ここをガッツリ可愛くしたよ！） --- */
         h1 {
             color: #ff8ba7;
             font-family: 'Kiwi Maru', serif;
             font-weight: 500;
             text-align: center;
             font-size: 1.6rem;
-            
-            /* 枠と背景を追加 */
             background: #fff;
             padding: 15px 30px;
-            border-radius: 50px; /* 丸っこく */
-            border: 3px dashed #ffb7c5; /* ステッチ風の枠線 */
-            box-shadow: 0 4px 0 rgba(255, 183, 197, 0.4); /* 立体感のある影 */
-            
+            border-radius: 50px;
+            border: 3px dashed #ffb7c5;
+            box-shadow: 0 4px 0 rgba(255, 183, 197, 0.4);
             margin-bottom: 10px;
-            display: inline-block; /* 文字の長さに合わせる */
+            display: inline-block;
             max-width: 90%;
             line-height: 1.4;
         }
@@ -116,7 +110,6 @@
             color: #777;
         }
         
-        /* アイコンの色を統一 */
         label i {
             color: #ffb7c5; 
             width: 20px;
@@ -145,7 +138,7 @@
             min-height: 80px;
         }
 
-        /* --- ファイル選択ボタンのカスタマイズ --- */
+        /* ファイル選択ボタン */
         input[type="file"] {
             display: none;
         }
@@ -181,7 +174,7 @@
             text-align: center;
         }
 
-        /* --- カラーピッカー --- */
+        /* カラーピッカー */
         .color-picker-wrapper {
             display: flex;
             gap: 15px;
@@ -381,6 +374,7 @@
             transition: all 0.2s;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
 
@@ -410,6 +404,48 @@
             background: #222;
         }
 
+        /* --- フッター要素（楽天＆TOPへ戻る）のスタイル --- */
+        .footer-content {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .rakuten img {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .backtop a {
+            color: #ff8ba7;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .backtop a:hover {
+            transform: translateY(-2px);
+            color: #ff6b8b;
+        }
+
+        #longpressSaveArea {
+            margin-top: 30px;
+            text-align: center;
+            display: none; /* 最初は非表示 */
+        }
+
         /* スマホ向け調整 */
         @media (max-width: 600px) {
             h1 { font-size: 1.4rem; padding: 12px 20px; }
@@ -417,7 +453,7 @@
             .editor { padding: 20px; border-radius: 20px;}
             #oshi-card { width: 100%; max-width: 320px; }
             .action-buttons { flex-direction: column; width: 100%; max-width: 320px; }
-            button { width: 100%; justify-content: center; }
+            button { width: 100%; }
         }
 
     </style>
@@ -498,53 +534,28 @@
             </div>
         </div>
     </div>
+    
     <!-- スマホ用長押し保存エリア -->
     <div id="longpressSaveArea"></div>
 
-    <!-- 楽天アフィ -->
-    <div class="rakuten">
-        <a href="https://hb.afl.rakuten.co.jp/hsc/4e9240a2.33577567.3d95c766.8a7897b5/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiI4NSIsImJhbiI6NDc4OTczLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener">
-            <img src="https://hbb.afl.rakuten.co.jp/hsb/4e9240a2.33577567.3d95c766.8a7897b5/?me_id=1&me_adv_id=478973&t=pict" border="0" alt="楽天お買い物マラソン">
-        </a>
+    <!-- フッターエリア（楽天・TOP戻る） -->
+    <div class="footer-content">
+        <!-- 楽天アフィ -->
+        <div class="rakuten">
+            <a href="https://hb.afl.rakuten.co.jp/hsc/4e9240a2.33577567.3d95c766.8a7897b5/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiI4NSIsImJhbiI6NDc4OTczLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener">
+                <img src="https://hbb.afl.rakuten.co.jp/hsb/4e9240a2.33577567.3d95c766.8a7897b5/?me_id=1&me_adv_id=478973&t=pict" border="0" alt="楽天お買い物マラソン">
+            </a>
+        </div>
+
+        <!-- TOPへ戻る -->
+        <div class="backtop">
+            <a href="https://mofu-mitsu.github.io/">
+                <i class="fa-solid fa-house"></i> もふみつ工房 TOPへ戻る
+            </a>
+        </div>
     </div>
 
-    <!-- TOPへ戻る -->
-    <div class="backtop">
-        <a href="https://mofu-mitsu.github.io/" style="color:#ff8ba7;text-decoration:none;font-weight:bold;">
-            <i class="fa-solid fa-house"></i> もふみつ工房 TOPへ戻る
-        </a>
-    </div>
     <script>
-        // ここ重要！スマホでも確実に保存できるようにした部分
-        document.getElementById('btn-save').addEventListener('click', function() {
-            const btn = this;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 生成中...';
-            btn.disabled = true;
-
-            html2canvas(document.getElementById('oshi-card'), {scale: 3, useCORS: true, backgroundColor: null}).then(canvas => {
-                if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-                    // PCは普通にダウンロード
-                    const link = document.createElement('a');
-                    link.download = `oshi-card-${Date.now()}.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                } else {
-                    // スマホは画像を表示して長押し保存誘導
-                    const area = document.getElementById('longpressSaveArea');
-                    area.style.display = 'block';
-                    area.innerHTML = '<p style="color:#d65d7a;font-weight:bold;">画像を長押しして「写真に保存」してね♡</p>';
-                    const img = new Image();
-                    img.src = canvas.toDataURL('image/png');
-                    img.style.maxWidth = '100%';
-                    img.style.borderRadius = '12px';
-                    img.style.boxShadow = '0 10px 30px rgba(255,105,180,0.3)';
-                    area.appendChild(img);
-                    area.scrollIntoView({behavior: 'smooth'});
-                }
-                btn.innerHTML = '<i class="fa-solid fa-camera"></i> 画像として保存（スマホでもOK）';
-                btn.disabled = false;
-            });
-        });
         // 要素の取得
         const card = document.getElementById('oshi-card');
         const inputs = {
@@ -573,6 +584,53 @@
             charm: "繊細だけど、仲良くなると意外とノリがいいところ。想像力が豊かで、みつきの話を聞くのが大好き！",
             quote: "「みつき、おかえり！待ってたよ✨」"
         };
+
+        // --- 画像保存機能（修正版） ---
+        // ここを1つに統合しました！
+        document.getElementById('btn-save').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerHTML; // 元のボタンの文字（アイコン含む）
+            
+            // ボタンを生成中モードにする
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 生成中...';
+            btn.disabled = true;
+
+            html2canvas(document.getElementById('oshi-card'), {
+                scale: 3, 
+                backgroundColor: null,
+                useCORS: true
+            }).then(canvas => {
+                // スマホ判定
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+                if (!isMobile) {
+                    // PCの場合：自動ダウンロード
+                    const link = document.createElement('a');
+                    link.download = `oshi-card-${Date.now()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                } else {
+                    // スマホの場合：長押しエリアに表示
+                    const area = document.getElementById('longpressSaveArea');
+                    area.style.display = 'block';
+                    area.innerHTML = '<p style="color:#d65d7a;font-weight:bold;margin-bottom:10px;">👇 画像を長押しして「写真に保存」してね♡</p>';
+                    
+                    const img = new Image();
+                    img.src = canvas.toDataURL('image/png');
+                    img.style.maxWidth = '100%';
+                    img.style.borderRadius = '12px';
+                    img.style.boxShadow = '0 10px 30px rgba(255,105,180,0.3)';
+                    area.appendChild(img);
+                    
+                    // 画像の場所までスクロール
+                    area.scrollIntoView({behavior: 'smooth'});
+                }
+
+                // ボタンを元に戻す
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        });
 
         // テキスト入力の反映処理
         function updateCard() {
@@ -629,25 +687,6 @@
 
         // 初期化実行
         updateCard();
-
-        // 画像保存機能
-        document.getElementById('btn-save').addEventListener('click', function() {
-            const btn = this;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 生成中...';
-            
-            html2canvas(document.getElementById('oshi-card'), {
-                scale: 3,
-                backgroundColor: null,
-                useCORS: true
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `oshi-card-${Date.now()}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                btn.innerHTML = originalText;
-            });
-        });
 
         // 共有機能（Web Share API）
         document.getElementById('btn-share').addEventListener('click', async function() {
